@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+            <link rel="shortcut icon" href="/images/favicon.ico" />
+
+            <link rel="stylesheet" href="/css/backend.min.css?v=1.0.2">
+            <link rel="stylesheet" href="/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+            <link rel="stylesheet" href="/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+            <link rel="stylesheet" href="/vendor/remixicon/fonts/remixicon.css">
+            <link rel="stylesheet" href="/vendor/@icon/dripicons/dripicons.css">
+
+            <link rel='stylesheet' href='/vendor/fullcalendar/core/main.css' />
+            <link rel='stylesheet' href='/vendor/fullcalendar/daygrid/main.css' />
+            <link rel='stylesheet' href='/vendor/fullcalendar/timegrid/main.css' />
+            <link rel='stylesheet' href='/vendor/fullcalendar/list/main.css' />
+            <link rel="stylesheet" href="/vendor/mapbox/mapbox-gl.css">
+
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+            <script src="/js/backend-bundle.min.js"></script>
+
+            <!-- Flextree Javascript-->
+            <script src="/js/flex-tree.min.js"></script>
+            <script src="/js/tree.js"></script>
+
+            <!-- Table Treeview JavaScript -->
+            <script src="/js/table-treeview.js"></script>
+
+            <!-- Masonary Gallery Javascript -->
+            <script src="/js/masonry.pkgd.min.js"></script>
+            <script src="/js/imagesloaded.pkgd.min.js"></script>
+
+            <!-- Mapbox Javascript -->
+            <script src="/js/mapbox-gl.js"></script>
+            <script src="/js/mapbox.js"></script>
+
+            <!-- Fullcalender Javascript -->
+            <script src='/vendor/fullcalendar/core/main.js'></script>
+            <script src='/vendor/fullcalendar/daygrid/main.js'></script>
+            <script src='/vendor/fullcalendar/timegrid/main.js'></script>
+            <script src='/vendor/fullcalendar/list/main.js'></script>
+
+            <!-- SweetAlert JavaScript -->
+            <script src="/js/sweetalert.js"></script>
+
+            <!-- Vectoe Map JavaScript -->
+            <script src="/js/vector-map-custom.js"></script>
+
+            <!-- Chart Custom JavaScript -->
+            <script src="/js/customizer.js"></script>
+
+            <!-- Chart Custom JavaScript -->
+            <script src="/js/chart-custom.js"></script>
+
+            <!-- slider JavaScript -->
+            <script src="/js/slider.js"></script>
+
+            <!-- app JavaScript -->
+            <script src="/js/app.js"></script>
+
+        {% endblock %}
+    </head>
+    <body>
+
+
+        <div id="loading">
+            <div id="loading-center">
+            </div>
+        </div>
+        <!-- loader END -->
+        <!-- Wrapper Start -->
+        <div class="wrapper">
+            {% if infos.id is   not defined %}
+            <div class="wrapper">
+                <section class="login-content">
+                    <div class="container h-100">
+                        <div class="row align-items-center justify-content-center h-100">
+                            <div class="col-12">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <img src="/images/user/1.jpg" class="rounded avatar-80 mb-3" alt="">
+                                        <h2 class="mb-2">Hi ! {{ username }}</h2>
+
+                                        <a href="{{ path('app_login') }}" class="btn btn-sm bg-primary">
+                                            <button type="submit" class="btn btn-primary">See Your Profil
+                                            </button>
+                                        </a>
+
+                                    </div>
+                                    <div class="col-lg-6 rmb-30">
+                                        <img src="/images/login/01.png" class="img-fluid w-80" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            {% else %}
+        <div class="wrapper">
+            <div class="iq-sidebar  sidebar-default ">
+                <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
+                    <a href="{{ path('Profil',{id:infos.id}) }}" class="header-logo">
+                        <img src="/images/Fichier 7.png" class="img-fluid rounded-normal light-logo" alt="logo">
+                        <img src="/images/Fichier 9.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
+                    </a>
+                    <div class="iq-menu-bt-sidebar">
+                        <i class="las la-bars wrapper-menu"></i>
+                    </div>
+                </div>
+                <div class="data-scrollbar" data-scroll="1">
+                    <nav class="iq-sidebar-menu">
+                        <ul id="iq-sidebar-toggle" class="iq-menu">
+
+                            <li class=" ">
+                                <a href="#app" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                    <i class="las la-user-circle"></i><span>User</span>
+                                    <i class="las la-angle-right iq-arrow-right arrow-active"></i>
+                                    <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
+                                </a>
+                                <ul id="app" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                    <li class=" ">
+                                        <a href="#user" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                            <i class="las la-user-cog"></i><span>User Details</span>
+                                            <i class="las la-angle-right iq-arrow-right arrow-active"></i>
+                                            <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
+                                        </a>
+                                        <ul id="user" class="iq-submenu collapse" data-parent="#app">
+                                            <li class="active">
+                                                <a href="{{ path('Profil',{id:infos.id}) }}">
+                                                    <i class="las la-id-card"></i><span>User Profile</span>
+                                                </a>
+                                            </li>
+                                            {% if is_granted('ROLE_ADMINISTRATOR') or is_granted('ROLE_DEPARTMENT_HEAD')%}
+                                            <li class=" ">
+                                                <a href="#adduser" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                                    <i class="las la-user-circle"></i><span>Add User</span>
+                                                    <i class="las la-angle-right iq-arrow-right arrow-active"></i>
+                                                    <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
+                                                </a>
+                                                <ul id="adduser" class="iq-submenu collapse" data-parent="#adduser">
+                                                            <li class="">
+                                                                <a href="{{ path('Add_User',{id:infos.id})}}">
+                                                                    <i class="las la-user"></i><span>Employee</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a href="{{ path('Add_departement_head',{id:infos.id}) }}">
+                                                                    <i class="las la-user-astronaut"></i><span>Depart-Head</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a href="{{ path('Add_Administrator',{id:infos.id}) }}">
+                                                                    <i class="las la-user-tie"></i><span>Administrator</span>
+                                                                </a>
+                                                            </li>
+
+                                                </ul>
+                                            </li>
+
+                                            <li class=" ">
+                                                <a href="{{ path('User_Liste',{id:infos.id}) }}">
+                                                    <i class="las la-list-alt"></i><span>User List</span>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+
+
+                                        <a href="#mission" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                            <i class="las la-briefcase"></i><span>Mission</span>
+                                            <i class="las la-angle-right iq-arrow-right arrow-active"></i>
+                                            <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
+                                        </a>
+                                        <ul id="mission" class="iq-submenu collapse" data-parent="#app">
+                                            <li class=" ">
+                                                <a href="{{ path('seeMission',{id:infos.Id,m:infos.Id})}}">
+                                                    <i class="las la-eye"></i><span>See Your Missions</span>
+                                                </a>
+                                            </li>
+                                            {% if is_granted('ROLE_ADMINISTRATOR') or is_granted('ROLE_DEPARTMENT_HEAD')%}
+                                            <li class=" ">
+                                                <a href="{{ path('usersMission',{id:infos.Id})}}">
+                                                    <i class="las la-user-lock"></i><span>User's Missions</span>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+
+
+                                        <a href="#vacation" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                            <i class="las la-bed"></i><span>Vacations </span>
+                                            <i class="las la-angle-right iq-arrow-right arrow-active"></i>
+                                            <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
+                                        </a>
+                                        <ul id="vacation" class="iq-submenu collapse" data-parent="#app">
+                                            <li class=" ">
+                                                <a href="{{ path('seeRequests',{id:infos.Id})}}">
+                                                    <i class="las la-eye"></i><span>See Your Requests</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="{{ path('addvacation',{id:infos.id})}}">
+                                                    <i class="las la-plus-circle"></i><span>Add Request</span>
+                                                </a>
+                                            </li>
+                                            {% if is_granted('ROLE_ADMINISTRATOR') or is_granted('ROLE_DEPARTMENT_HEAD')%}
+                                            <li class=" ">
+                                                <a href="{{ path('seeUserRequests',{id:infos.Id})}}">
+                                                    <i class="las la-user-clock"></i><span>User's Requests</span>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            </li>
+                                        </ul>
+
+                                </ul>
+
+
+
+                    <div class="p-3"></div>
+                </div>
+            </div>       <div class="iq-top-navbar">
+                <div class="iq-navbar-custom">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
+                            <i class="ri-menu-line wrapper-menu"></i>
+                            <a href="index.html" class="header-logo">
+                                <img src="images/logo1.png" class="img-fluid rounded-normal light-logo" alt="logo">
+                                <img src="images/logo-white.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
+
+                            </a>
+                        </div>
+                        <div class="iq-search-bar device-search">
+                            <form action="#" class="searchbox">
+                                <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                <input type="text" class="text search-input" placeholder="Search here...">
+                            </form>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="change-mode">
+                                <div class="custom-control custom-switch custom-switch-icon custom-control-inline">
+                                    <div class="custom-switch-inner">
+                                        <p class="mb-0"> </p>
+                                        <input type="checkbox" class="custom-control-input" id="dark-mode" data-active="true">
+                                        <label class="custom-control-label" for="dark-mode" data-mode="toggle">
+                                            <span class="switch-icon-left"><i class="a-left ri-moon-clear-line"></i></span>
+                                            <span class="switch-icon-right"><i class="a-right ri-sun-line"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"  aria-label="Toggle navigation">
+                                <i class="ri-menu-3-line"></i>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ml-auto navbar-list align-items-center">
+                                    <li class="nav-item nav-icon search-content">
+                                        <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="ri-search-line"></i>
+                                        </a>
+                                        <div class="iq-search-bar iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownSearch">
+                                            <form action="#" class="searchbox p-2">
+                                                <div class="form-group mb-0 position-relative">
+                                                    <input type="text" class="text search-input font-size-12" placeholder="type here to search...">
+                                                    <a href="#" class="search-link"><i class="las la-search"></i></a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item nav-icon dropdown">
+                                        <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="ri-mail-line  bg-orange p-2 rounded-small"></i>
+                                            <span class="bg-primary"></span>
+                                        </a>
+
+                                    </li>
+                                    <li class="nav-item nav-icon dropdown">
+                                        <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            <i class="ri-notification-line bg-info p-2 rounded-small"></i>
+                                            <span class="bg-primary "></span>
+                                        </a>
+
+                                    </li>
+                                    <li class="nav-item iq-full-screen"><a href="#" class="" id="btnFullscreen"><i class="ri-fullscreen-line"></i></a></li>
+                                    <li class="caption-content">
+                                        <a href="#" class="iq-user-toggle">
+                                            {% if infos.image == null %}
+                                        <img src="/images/user/1.jpg" alt="profile-bg" class="rounded img-fluid avatar-80">
+                                        {% else %}
+                                            <img src="/uploads/{{ infos.image }}" alt="profile-bg" class="rounded img-fluid avatar-80">
+                                            {% endif %}
+                                        </a>
+                                        <div class="iq-user-dropdown">
+                                            <div class="card">
+                                                <div class="card-header d-flex justify-content-between align-items-center mb-0">
+                                                    <div class="header-title">
+                                                        <h4 class="card-title mb-0">Profile</h4>
+                                                    </div>
+                                                    <div class="close-data text-right badge badge-primary cursor-pointer"><i class="ri-close-fill"></i></div>
+                                                </div>
+                                                <div class="data-scrollbar" data-scroll="2">
+                                                    <div class="card-body">
+                                                        <div class="profile-header">
+                                                            <div class="cover-container ">
+                                                                <div class="media align-items-center mb-4">
+                                                                    {% if infos.image == null %}
+                                                                    <img src="/images/user/1.jpg" alt="profile-bg" class="rounded img-fluid avatar-80">
+                                                                    {% else %}
+                                                                    <img src="/uploads/{{ infos.image }}" alt="profile-bg" class="rounded img-fluid avatar-80">
+                                                                    {% endif %}
+                                                                    <div class="media-body profile-detail ml-3">
+                                                                        <h3>{{ infos.name }}</h3>
+                                                                        <div class="d-flex flex-wrap">
+                                                                            <p class="mb-1">{{ infos.role }}</p><a href="{{ path('app_logout') }}" class=" ml-3">Sign Out</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6 col-md-6  col-6 pr-0">
+                                                                    <div class="profile-details text-center">
+                                                                        <a href="{{path('Profil',{id:infos.id}) }}" class="iq-sub-card bg-primary-light rounded-small p-2">
+                                                                            <div class="rounded iq-card-icon-small">
+                                                                                <i class="ri-file-user-line"></i>
+                                                                            </div>
+                                                                            <h6 class="mb-0 ">My Profile</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6  col-md-6 col-6">
+                                                                    <div class="profile-details text-center">
+                                                                        <a href="{{path('modifyInfos',{id:infos.id}) }}" class="iq-sub-card bg-danger-light rounded-small p-2">
+                                                                            <div class="rounded iq-card-icon-small">
+                                                                                <i class="ri-profile-line"></i>
+                                                                            </div>
+                                                                            <h6 class="mb-0 ">Edit Profile</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6  col-6 pr-0">
+                                                                    <div class="profile-details text-center">
+                                                                        <a href="{{ path('seeMission',{id:infos.Id,m:infos.Id})}}" class="iq-sub-card bg-success-light rounded-small p-2">
+                                                                            <div class="rounded iq-card-icon-small">
+                                                                                <i class="las la-briefcase"></i>
+                                                                            </div>
+                                                                            <h6 class="mb-0 ">Mission</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6  col-6">
+                                                                    <div class="profile-details text-center">
+                                                                        <a href="/uploads/{{ infos.resume }}" class="iq-sub-card bg-info-light rounded-small p-2">
+                                                                            <div class="rounded iq-card-icon-small">
+                                                                                <i class="las la-address-card"></i>
+                                                                            </div>
+                                                                            <h6 class="mb-0 ">Your Resume</h6>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="personal-details">
+                                                                <h5 class="card-title mb-3 mt-3">Personal Details</h5>
+                                                                <div class="row align-items-center mb-2">
+                                                                    <div class="col-sm-6">
+                                                                        <h6>Birthday</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="mb-0">{{ infos.birthday }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row align-items-center mb-2">
+                                                                    <div class="col-sm-6">
+                                                                        <h6>Address</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="mb-0">{{ infos.address }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row align-items-center mb-2">
+                                                                    <div class="col-sm-6">
+                                                                        <h6>Phone</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="mb-0">{{ infos.phone }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row align-items-center mb-2">
+                                                                    <div class="col-sm-6">
+                                                                        <h6>Email</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="mb-0">{{infos.email}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row align-items-center mb-2">
+                                                                    <div class="col-sm-6">
+                                                                        <h6>Gender</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="mb-0">{{ infos.gender }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row align-items-center mb-2">
+                                                                    <div class="col-sm-6">
+                                                                        <h6>Departement Head</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="mb-0">{{ infos.department }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row align-items-center mb-2">
+                                                                    <div class="col-sm-6">
+                                                                        <h6>Facebook</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="mb-0">@{{ infos.name }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="p-3"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            {% endif %}
+            {% block body %}
+        {% endblock %}
+    </body>
+</html>

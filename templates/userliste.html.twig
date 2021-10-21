@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+        <div class="content-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <div class="header-title">
+                                    <h4 class="card-title">User List</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div class="row justify-content-between">
+                                        <div class="col-sm-6 col-md-6">
+                                            <div id="user_list_datatable_info" class="dataTables_filter">
+                                                <form class="mr-3 position-relative">
+                                                    <div class="form-group mb-0">
+                                                        <input type="search" class="form-control" id="exampleInputSearch" placeholder="Search" aria-controls="user-list-table">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+
+                                        </div>
+                                    </div>
+                                    <table id="user-list-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
+                                        <thead>
+                                        <tr>
+                                            <th>Profile</th>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th >Email</th>
+                                            <th>Adress</th>
+                                            <th>Status</th>
+                                            <th>Role</th>
+                                            <th style="min-width: 120px">Join Date</th>
+                                            <th style="min-width: 100px">Employee ID</th>
+                                            <th >Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                            {% if user.image == null %}
+                                            <td class="text-center"><img class="rounded img-fluid avatar-40" src="/images/user/01.jpg" alt="profile"></td>
+                                            {% else %}
+                                                <td class="text-center"><img class="rounded img-fluid avatar-40" src="/uploads/{{ user.image }}" alt="profile"></td>
+                                                {% endif %}
+                                                <td>{{ user.name }}</td>
+                                            <td>{{ user.phone }}</td>
+                                            <td>{{user.email}}</td>
+                                            <td>{{ user.address }}</td>
+
+                                            <td><span class="badge iq-bg-primary">{{ user.job }}</span></td>
+                                            <td>{{ user.role }}</td>
+                                            <td>{{ user.joinDate }}</td>
+                                            <td>{{ user.Id }}</td>
+                                            <td>
+                                                <div class="flex align-items-center list-user-action">
+                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="See Profil" href="{{ path('User_Profil',{id:infos.id,m:user.id})}}"><i class="las la-eye"></i></a>
+                                                    <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="{{ path('Delete',{m:user.id,id:infos.id})}}"><i class="ri-delete-bin-line"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wrapper End-->
+
+{% endblock %}

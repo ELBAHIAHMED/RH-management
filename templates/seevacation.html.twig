@@ -1,0 +1,75 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">{{infos.name}} Vacation Request</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table data-table table-striped table-bordered" >
+                                    <thead>
+                                    <tr>
+                                        <th>Request ID</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Reason</th>
+                                        <th style="min-width: 100px">Validation</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for vacations in vacation %}
+
+                                        {% if vacations.validation == "Approved" %}
+                                            <tr class="table-success">
+                                                <td> {{ vacations.Id }}</td>
+                                                <td>{{ vacations.firstDay }}</td>
+                                                <td>{{ vacations.lastDay }}</td>
+                                                <td>{{ vacations.reason }}</td>
+                                                <td>{{ vacations.validation }}</td>
+                                            </tr>
+                                        {% endif %}
+                                        {%  if vacations.validation == "Not Approved Yet" %}
+                                            <tr class="table-warning">
+                                                <td> {{ vacations.Id }}</td>
+                                                <td>{{ vacations.firstDay }}</td>
+                                                <td>{{ vacations.lastDay }}</td>
+                                                <td>{{ vacations.reason }}</td>
+                                                <td>{{ vacations.validation }}</td>
+                                            </tr>
+                                        {% endif %}
+                                        {%  if vacations.validation == "Not Approved" %}
+                                            <tr class="table-danger">
+                                                <td> {{ vacations.Id }}</td>
+                                                <td>{{ vacations.firstDay }}</td>
+                                                <td>{{ vacations.lastDay }}</td>
+                                                <td>{{ vacations.reason }}</td>
+                                                <td>{{ vacations.validation }}</td>
+                                            </tr>
+                                        {% endif %}
+
+
+                                    {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Wrapper End-->
+
+{% endblock %}

@@ -1,0 +1,270 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="content-page">
+        <div class="container-fluid">
+            <form action= "{{ path('Add_info_user',{id:infos.id})}}" method="post" >
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="iq-edit-list usr-edit">
+                                <ul class="iq-edit-profile d-flex nav nav-pills">
+                                    <li class="col-md-3 p-0">
+                                        <a class="nav-link active" data-toggle="pill" href="#personal-information">
+                                            Education
+                                        </a>
+                                    </li>
+                                    <li class="col-md-3 p-0">
+                                        <a class="nav-link" data-toggle="pill" href="#chang-pwd">
+                                            Languages
+                                        </a>
+                                    </li>
+                                    <li class="col-md-3 p-0">
+                                        <a class="nav-link" data-toggle="pill" href="#emailandsms">
+                                            Experience
+                                        </a>
+                                    </li>
+                                    <li class="col-md-3 p-0">
+                                        <a class="nav-link" data-toggle="pill" href="#manage-contact">
+                                            skills
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="iq-edit-list-data">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <div class="iq-header-title">
+                                            <h4 class="card-title">Education</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+
+                                            <div class="form-group row align-items-center">
+                                                <div class="col-md-12">
+                                                    <div class="profile-img-edit">
+                                                        <div class="crm-profile-img-edit">
+                                                            <img class="crm-profile-pic rounded-circle avatar-100" src="/images/user/11.png" alt="profile-pic">
+                                                            <div class="crm-p-image bg-primary">
+                                                                <i class="las la-pen upload-button"></i>
+                                                                <input class="file-upload" type="file" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" row align-items-center">
+                                                <div class="form-group col-sm-6">
+                                                    <label for="elementarySchool">Elementary School:</label>
+                                                    <input type="text" class="form-control" name="elementarySchool" value="" placeholder="South Kellergrove Junior">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="elementarySchool1">Description of Elementary Shool:</label>
+                                                    <input type="text" class="form-control" name="elementarySchool1" value="" placeholder="Junior High School | Class of 2008">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="highSchool">High School:</label>
+                                                    <input type="text" class="form-control" name="highSchool" value="" placeholder="South Kellergrove High">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="highSchool1">Description of High School:</label>
+                                                    <input type="text" class="form-control" name="highSchool1" value="" placeholder="Senior High School | 2010">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="college">College:</label>
+                                                    <input type="text" class="form-control" name="college" value="" placeholder="Milchuer College">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="college1">Description of College:</label>
+                                                    <input type="text" class="form-control" name="college1" value="" placeholder="Master of Science in Computer Science | 2015">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="university">University:</label>
+                                                    <input type="text" class="form-control" name="university" value="" placeholder="Beechtown University">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="university1">Description of University:</label>
+                                                    <input type="text" class="form-control" name="university1" value="" placeholder="Bachelor of Science in Computer Science | 2013">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="master">Master:</label>
+                                                    <input type="text" class="form-control" name="master" value="" placeholder="Oxford Master">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="master1">Description of Master:</label>
+                                                    <input type="text" class="form-control" name="master1" value="" placeholder="Master of Science in Computer Science | 2015">
+                                                </div>
+                                            </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <div class="iq-header-title">
+                                            <h4 class="card-title">Language</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+
+                                            <div class=" row align-items-center">
+                                            <div class="form-group col-sm-6">
+                                                <label for="firstLan">First Language:</label>
+                                                <input type="text" class="form-control" name="firstLan" value="" placeholder="Frensh">
+                                            </div>
+                                                <div class="form-group col-sm-6">
+                                                <label for="percentageFirst">Percentage of assimilation the First Language (%):</label>
+                                                <input type="text" class="form-control" name="percentageFirst" value="" placeholder="90">
+                                            </div>
+
+                                                <div class="form-group col-sm-6">
+                                                <label for="secondLan">Second Language:</label>
+                                                <input type="text" class="form-control" name="secondLan" value="" placeholder="English">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="percentageSecond">Percentage of assimilation the Second Language (%):</label>
+                                                <input type="text" class="form-control" name="percentageSecond" value="" placeholder="65">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="thirdLan">Third Language:</label>
+                                                <input type="text" class="form-control" name="thirdLan" value="" placeholder="Arabic">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="percentageThird">Percentage of assimilation the Third Language (%):</label>
+                                                <input type="text" class="form-control" name="percentageThird" value="" placeholder="50">
+                                            </div>
+
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="emailandsms" role="tabpanel">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <div class="iq-header-title">
+                                            <h4 class="card-title">Experiences</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+
+
+                                                <div class="form-group col-sm-12">
+                                                    <label for="firstExperience">First Experience:</label>
+                                                    <input type="text" class="form-control" name="firstExperience" value="" placeholder="Software Engineer at Mathica Labs | 2018 - present">
+                                                </div>
+                                                <div class="form-group col-sm-12">
+                                                    <label for="secondExperience"> Second Experience:</label>
+                                                    <input type="text" class="form-control" name="secondExperience" value="" placeholder="Junior Software Engineer at Zimcore Solutions | 2015 - 2018">
+                                                </div>
+
+                                                <div class="form-group col-sm-12">
+                                                    <label for="thirdExperience">Third Experience:</label>
+                                                    <input type="text" class="form-control" name="thirdExperience" value="" placeholder="">
+                                                </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="manage-contact" role="tabpanel">
+                                <div class="card">
+
+                                        <div class="card-header d-flex justify-content-between">
+                                            <div class="iq-header-title">
+                                                <h4 class="card-title"> Profesional Skills</h4>
+                                            </div>
+                                         </div>
+                                        <div class="card-body">
+                                            <div class=" row align-items-center">
+
+                                            <div class="form-group col-sm-6">
+                                                <label for="fistpro">First Profesional Skill:</label>
+                                                <input type="text" class="form-control" name="fistpro" value="" placeholder="Photoshop">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="firstPercPro">Percentage of assimilation the First Profesional Skill (%):</label>
+                                                <input type="text" class="form-control" name="firstPercPro" value="" placeholder="90">
+                                            </div>
+
+                                            <div class="form-group col-sm-6">
+                                                <label for="secondPro">Second Profesional Skill:</label>
+                                                <input type="text" class="form-control" name="secondLPro" value="" placeholder="Illustrator">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="secondPercentPro">Percentage of assimilation the Second Profesional Skill (%):</label>
+                                                <input type="text" class="form-control" name="secondPercentpro" value="" placeholder="65">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="thirdPro">Third Profesional Skill:</label>
+                                                <input type="text" class="form-control" name="thirdPro" value="" placeholder="Adobe XD">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="thirdPerPro">Percentage of assimilation the Third Profesional Skill (%):</label>
+                                                <input type="text" class="form-control" name="thirdPerPro" value="" placeholder="60">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="fouthPro">Fourth Profesional Skill:</label>
+                                                <input type="text" class="form-control" name="fourthPro" value="" placeholder="Symfony">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="fourthPercPro">Percentage of assimilation the Fourth Profesional Skill (%):</label>
+                                                <input type="text" class="form-control" name="fourthPercPro" value="" placeholder="75">
+                                            </div>
+                                            </div>
+                                            <div class="card-header d-flex justify-content-between">
+                                                <div class="iq-header-title">
+                                                    <h4 class="card-title"> Personal Skills</h4>
+                                                </div>
+                                            </div>
+
+                                        <br>
+
+
+                                            <div class=" row align-items-center">
+
+                                                <div class="form-group col-sm-6">
+                                                    <label for="fistper">First Personal Skill:</label>
+                                                    <input type="text" class="form-control" name="fistper" value="" placeholder="Creative spirit">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="secondper"> Second Personal Skill:</label>
+                                                    <input type="text" class="form-control" name="secondper" value="" placeholder="
+Reliable and professional">
+                                                </div>
+
+                                                <div class="form-group col-sm-6">
+                                                    <label for="thirsper">Third Personal Skill:</label>
+                                                    <input type="text" class="form-control" name="thirdper" value="" placeholder="
+Time management">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="fourthper">Fourth Personal Skill:</label>
+                                                    <input type="text" class="form-control" name="fourthper" value="" placeholder="Organized">
+                                                </div>
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button type="reset" class="btn iq-bg-danger">Cancel</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+<!-- Wrapper End-->
+
+{% endblock %}

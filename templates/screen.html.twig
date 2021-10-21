@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<body class=" ">
+<!-- loader Start -->
+<!-- loader END -->
+
+<div class="wrapper">
+    <section class="login-content">
+        <div class="container h-100">
+            <div class="row align-items-center justify-content-center h-100">
+                <div class="col-12">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <img src="/images/user/1.jpg" class="rounded avatar-80 mb-3" alt="">
+                            <h2 class="mb-2">Hi ! {{ username }}</h2>
+
+                            <a href="{{ path('app_login') }}" class="btn btn-sm bg-primary">
+                                <button type="submit" class="btn btn-primary">See Your Profil
+                                </button>
+                            </a>
+
+                        </div>
+                        <div class="col-lg-6 rmb-30">
+                            <img src="/images/login/01.png" class="img-fluid w-80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

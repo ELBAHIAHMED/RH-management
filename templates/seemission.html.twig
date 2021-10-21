@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">{{ users.name }} Missions</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="datatable" class="table data-table table-striped table-bordered" >
+                                    <thead>
+                                    <tr>
+                                        <th>Client's ID</th>
+                                        <th>Client's Name</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th style="min-width: 100px">comment</th>
+                                        <th style="min-width: 100px">Validation</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for missions in mission %}
+
+                                        {% if missions.validation == "Done" %}
+                                            <tr class="table-success">
+                                                <td> {{ missions.ID }}</td>
+                                                <td>{{ missions.clientName }}</td>
+                                                <td>{{ missions.startDate }}</td>
+                                                <td>{{ missions.endDate }}</td>
+                                                <td>
+                                                    <form action= "{{ path('commentsMission',{id:infos.id,m:missions.ID})}}" method="post" >
+
+                                                        <input type="text" class="form-control" name="comment" value="{{ missions.comment }} " placeholder="remarque">
+                                                        <button type="submit" class="btn btn-primary mr-2">save</button>
+                                                </td>
+                                                <td>{{ missions.validation }}</td>
+                                            </tr>
+                                        {% else %}
+                                            <tr class="table-danger">
+                                                <td> {{ missions.ID }}</td>
+                                                <td>{{ missions.clientName }}</td>
+                                                <td>{{ missions.startDate }}</td>
+                                                <td>{{ missions.endDate }}</td>
+                                                <td>
+                                                    <form action= "{{ path('commentsMission',{id:infos.id,m:missions.ID})}}" method="post" >
+
+                                                        <input type="text" class="form-control" name="comment" value="{{ missions.comment }} " placeholder="remarque">
+                                                        <button type="submit" class="btn btn-primary mr-2">save</button>
+                                                </td>
+
+                                                <td>
+                                                    <a href="{{ path('doneMission',{id:infos.id,m:missions.ID})}}" ><button type="submit" class="btn btn-primary" >Done</button>  </a>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+
+
+                                    {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Wrapper End-->
+
+{% endblock %}

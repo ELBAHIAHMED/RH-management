@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title"> Vacation Request</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="datatable" class="table data-table table-striped table-bordered" >
+                                <thead>
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>User Name</th>
+                                    <th>User Role</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Reason</th>
+                                    <th style="min-width: 100px">Validation</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for vacations in vacation %}
+
+                                    {%  if vacations.validation == "Not Approved Yet" %}
+                                        <tr class="table-warning">
+                                            <td> {{ vacations.Id }}</td>
+                                            <td> {{ vacations.name }}</td>
+                                            <td> {{ vacations.role }}</td>
+                                            <td>{{ vacations.firstDay }}</td>
+                                            <td>{{ vacations.lastDay }}</td>
+                                            <td>{{ vacations.reason }}</td>
+                                            <td>
+                                                <a href="{{ path('approvedMission',{id:infos.id,m:vacations.Id})}}" >  <button type="button" class="btn btn-outline-success rounded-pill mt-2">Approved</button> </a>
+                                                <a href="{{ path('notapprovedMission',{id:infos.id,m:vacations.Id})}}" ><button  type="button" class="btn btn-outline-danger rounded-pill mt-2">Not Approved</button></a>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+
+
+                                {% endfor %}
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Wrapper End-->
+
+{% endblock %}
